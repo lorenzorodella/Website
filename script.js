@@ -14,23 +14,6 @@ window.addEventListener("resize", function(event) {
 });
 
 
-/*document.addEventListener('mousemove', e => {
-  console.clear()
-  let el = document.elementFromPoint(e.clientX, e.clientY)
-  if (el.classList.contains('bg-box')) {highlightSquare(el);}
-}, {passive: true})
-
-var prevHighlight = document.querySelector('.bg-box');
-
-function highlightSquare(el) {
-  if (prevHighlight !== el) {
-    el.style.background = highlightColor;
-    prevHighlight.style.background = squareColor;
-  }
-  prevHighlight = el;
-}*/
-
-
 
 var r = document.querySelector(':root');
 
@@ -111,8 +94,31 @@ function addSolution() {
 }
 
 
+const wName= ["l","o","r","e","n","z","o"]
+const wSurname= ["r","o","d","e","l","l","a"]
+
+function addTitle() {
+  var cols = parseInt(getComputedStyle(r).getPropertyValue('--boxes-cols'));
+  if (cols >= 14) {
+    for(let i=0; i<wName.length; i++) {
+      let num = i+1
+      let el = document.querySelector('.bg-box:nth-child('+(num)+')')
+      el.classList.add('title')
+      el.innerHTML=wName[i];
+    }
+    for(let i=cols; i>=cols-wSurname.length+1; i--) {
+      console.log(i)
+      let el = document.querySelector('.bg-box:nth-child('+(i)+')')
+      el.classList.add('title')
+      el.innerHTML=wSurname[(i-cols+wSurname.length-1)];
+    }
+  }
+}
+
+
 setBoxesCols()
 generateBoxes()
 populateBoxes()
 addSolution()
+addTitle()
 

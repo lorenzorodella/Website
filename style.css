@@ -2,6 +2,7 @@ body {
   margin: var(--grid-gap);
   overflow: hidden;
   background: var(--square-color);
+  font-family: 'Exo 2', sans-serif;
 }
 
 :root {
@@ -84,4 +85,14 @@ body {
 
 .solution:hover i {
   color: var(--square-color);
+}
+
+
+.bg-box.title {
+  color: var(--highlight-color);
+  font-size:1.5em;
+}
+
+.bg-box.title:hover {
+  color: var(--bg-color);
 }
