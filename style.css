@@ -6,10 +6,12 @@ body {
 }
 
 :root {
+  --box-width: 80px;
   --boxes-cols: 60;
   --grid-gap: 3px;
   --square-color: #5c5148;
   --highlight-color: #fff;
+  --bg-medium: #7d6d60;
 }
 
 
@@ -39,7 +41,7 @@ body {
 }
 
 .bg-box:hover {
-  background-color: var(--highlight-color);
+  background-color: var(--bg-medium);
 }
 
 .bg-box i {
@@ -75,12 +77,25 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  width: var(--box-width);
+  height: var(--box-width);
+  z-index:50;
+  position: fixed;
+  bottom: var(--grid-gap);
+  right: var(--grid-gap);
+  border-radius: 10px;
+  transition: all .2s ease;
+  background: var(--bg-medium);
 }
 
 .solution i {
   color: var(--highlight-color);
   font-size: 2em;
   cursor: pointer;
+}
+
+.solution:hover {
+  background: var(--highlight-color);
 }
 
 .solution:hover i {
@@ -95,4 +110,9 @@ body {
 
 .bg-box.title:hover {
   color: var(--bg-color);
+}
+
+
+.rand-social:hover {
+  background: var(--highlight-color);
 }

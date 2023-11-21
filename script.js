@@ -1,4 +1,6 @@
-const boxWidth = 80;
+var r = document.querySelector(':root');
+
+const boxWidth = parseInt(getComputedStyle(r).getPropertyValue('--box-width').replace('px', ''));
 const boxGap = 3;
 var screenWidth = window.innerWidth;
 var screenHeight = window.innerHeight;
@@ -10,12 +12,8 @@ window.addEventListener("resize", function(event) {
   setBoxesCols()
   updateBoxes()
   populateBoxes()
-  addSolution()
+  addTitle()
 });
-
-
-
-var r = document.querySelector(':root');
 
 function setBoxesCols() {
   r.style.setProperty('--boxes-cols', computeBoxesNum(boxWidth, boxGap, screenWidth, screenHeight)[0]);
@@ -53,7 +51,7 @@ const socials = {'GitHub': ['https://github.com/lorenzorodella', '<i class="fa-b
 
 function populateBoxes() {
   min = parseInt(getComputedStyle(r).getPropertyValue('--boxes-cols'))+1;
-  max = parseInt(computeBoxesNum(boxWidth, boxGap, screenWidth, screenHeight)[1]) - (2*min-2);
+  max = parseInt(computeBoxesNum(boxWidth, boxGap, screenWidth, screenHeight)[1]) - (3*min-2);
   rands = generateRandomNumbers(min, max, 4)
   for (let i=0; i<rands.length; i++) {
     fillBox(rands[i], Object.keys(socials)[0], Object.values(socials)[0])
@@ -63,6 +61,7 @@ function populateBoxes() {
 function fillBox(boxnum, name, content) {
   let query = '.bg-box:nth-child('+boxnum+')';
   let el = document.querySelector(query);
+  el.classList.add("rand-social")
   el.innerHTML='<a href="'+content[0]+'" target="_blank" title="'+name+'">'+content[1]+'</a>';
 }
 
@@ -79,8 +78,14 @@ const generateRandomNumbers = (min, max, times) => {
 
 
 
+document.querySelector('.solution').addEventListener("click", function(event) {
+  randNums.forEach(function(num) {
+    document.querySelector('.bg-box:nth-child('+num+')').style.background = getComputedStyle(r).getPropertyValue('--highlight-color');
+  })
+});
 
-function addSolution() {
+
+/*function addSolution() {
   let queryNum = parseInt(getComputedStyle(r).getPropertyValue('--boxes-cols'));
   let el = document.querySelector('.bg-box:nth-child('+queryNum+')')
   el.classList.add('solution');
@@ -91,7 +96,7 @@ function addSolution() {
       document.querySelector('.bg-box:nth-child('+num+')').style.background = getComputedStyle(r).getPropertyValue('--highlight-color');
     })
   });
-}
+}*/
 
 
 const wName= ["l","o","r","e","n","z","o"]
@@ -119,6 +124,6 @@ function addTitle() {
 setBoxesCols()
 generateBoxes()
 populateBoxes()
-addSolution()
+//addSolution()
 addTitle()
 
