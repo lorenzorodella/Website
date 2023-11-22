@@ -24,7 +24,6 @@ h1 {
   color: var(--text-color);
   font-size: 50px;
   letter-spacing: -5px;
-  margin-bottom: 20px;
   display:inline;
 }
 
@@ -120,4 +119,34 @@ nav ul li:hover {
 .content-wrap {
   transition: opacity .3s ease-in-out;
   opacity: 0;
+}
+
+.mobile-only {
+  display: none;
+}
+
+.mobile-only p {
+  margin-bottom: 0;
+}
+
+@media screen and (max-width: 600px) {
+
+  .container {
+    height:100%;
+    margin-top: 3em;
+    margin-bottom: 1em;
+  }
+  
+  h1 {
+    font-size: 2em;
+  }
+
+  nav ul li {
+    display: none;
+  }
+
+  .mobile-only {
+    display: block;
+  }
+
 }
